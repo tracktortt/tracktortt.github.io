@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="css/style.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!-- navbar start here -->
+
+    <nav>
+        <div class="nav-wrapper blue lighten-1">
+            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#" class="tabb" data-id="dashboard">Dashboard</a></li>
+                <li><a href="#" class="tabb" data-id="dailyTimeLog">Daily Time Log</a></li>
+                <li><a href="#" class="tabb" data-id="allCustomer">All Customer</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav blue lighten-1 center white-text" id="mobile-demo">
+        <li><a href="#" class="tabb" data-id="dashboard">Dashboard</a></li>
+        <li><a href="#" class="tabb" data-id="dailyTimeLog">Daily Time Log</a></li>
+        <li><a href="#" class="tabb" data-id="allCustomer">All Customer</a></li>
+    </ul>
+
+    <!-- navbar end here -->
+    <div class="container">
+        <div class="dailyTimeLog tabe" id="dailyTimeLog" style="display: none;">
+            <div class="row">
+                <h3 class="center">Daily log</h3>
+                <div class="col s4 m4 offset-s4 offset-m4">
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12" style="overflow-x:auto;">
+                    <table class="main_table  highlight" id="daily_log_table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Minutes</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6"><h3>No Daily log found</h3></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="allCustomer tabe" id ="allCustomer" style="display: block;">
+            <div class="row">
+                <h3 class="center">All Customer</h3>
+                <div class="col s4 m4 offset-s4 offset-m4">
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                    <form id="customer_Search">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search</i>
+                            <input id="searchCustomer" type="text" class="validate">
+                            <label for="searchCustomer">Search Customer</label>
+                          </div>
+                    </form>
+            </div>
+            <div class="row">
+                <ul class="collapsible" id="collapsible_container">
+                    <li>
+                      <div class="collapsible-header">  <img width="30px" style="margin-right: 1rem;" class="responsive-img" src="https://avatar.iran.liara.run/public?username=Debjyoti">Debjyoti</div>
+                      <div class="collapsible-body">
+                        <div class="row">
+                            <p>Address: Dharmapur, Gopiballavpur, Jhargram
+                               <br>Phone No: 7004811457
+                               <br> Remark : bhumi
+                            </p>
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Minutes</th>
+                                        <th>Sub Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>22-12-2003</td>
+                                        <td>21, 25, 27</td>
+                                        <td>73</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <th>Total</th>
+                                        <th>73 Minutes</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                      </div>
+                    </li>
+                    <!-- <li>
+                      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                    <li>
+                      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                  </ul> -->
+                        
+            </div>
+        </div>
+
+    </div>
+    <!-- floating button start here -->
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large blue" id="add_new">
+            <i class="large material-icons ">add</i>
+        </a>
+        <!-- <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul> -->
+    </div>
+    <!-- floating button end here -->
+    <!-- modalbox start here -->
+
+    <!-- Modal Structure -->
+    <div id="main_modal" class="modal">
+        <div class="modal-content">
+            <a class="btn red lighten-1 modal-close" id="close_btn"><i class="material-icons">close</i></a>
+            <div class="row">
+                <form class="col s12" id="new_form">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">date_range</i>
+                            <input id="new_form_date" type="text" class="datepicker" name="date" required>
+                            <label for="new_form_date">Date *</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">perm_identity</i>
+                            <input id="new_form_name" type="text" class="validate autocomplete" name="name" required autocomplete="off" >
+                            <label for="new_form_name">Full Name * </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="new_form_phone" type="text" class="validate autocomplete" name="phone" >
+                            <label for="new_form_phone">Phone (optional)</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person_pin_circle</i>
+                            <textarea id="new_form_address" class="materialize-textarea" name="address"></textarea>
+                            <label for="new_form_address">Address (optional)</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">speaker_notes</i>
+                            <input id="new_form_remark" type="text" class="" name="remark">
+                            <label for="new_form_remark">Remark (optional)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4 m2 offset-m11 offset-s9">
+                            <button id="add_new_button" class="btn waves-effect  blue lighten-1 border-radius_5" type="submit" name="action">Add
+                                <i class="material-icons right">add</i>
+                              </button>
+                        </div>
+                    </div>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- modalbox end here -->
+     <!-- hiddeninput start here -->
+     <input type="hidden" id="datepicker_h" class="datepicker">
+     <input type="hidden" id="timepicker_h" class="timepicker">
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var sidenav = document.querySelectorAll('.sidenav');
+            var s_instances = M.Sidenav.init(sidenav, {});
+
+            var fixed_button = document.querySelectorAll('.fixed-action-btn');
+            var f_instances = M.FloatingActionButton.init(fixed_button, {});
+
+            var modalbox_main = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(modalbox_main, {});
+
+
+            // var autocompletef = document.querySelectorAll('.autocomplete');
+            // var a_instances = M.Autocomplete.init(autocompletef, {});
+
+     
+            var C_instances = M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
+            // var timepicker = document.querySelectorAll('.timepicker');
+            // var t_instances = M.Timepicker.init(timepicker, {
+            //     onCloseEnd: function() {
+            //         const selectedTime = t_instances.time;
+            //         console.log('Selected Time:', selectedTime);
+            //     }
+            // });
+            
+            
+            //new form validation
+            var new_form_datepicker = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(new_form_datepicker, {
+                autoClose: true,
+                format: "dd-mm-yyyy"
+            });
+
+            // document.querySelectorAll("input").characterCounter();
+
+            const new_form_date = document.getElementById("new_form_date");
+            const add_new = document.getElementById("add_new");
+            add_new.addEventListener("click", e => {
+                const main_modal = document.getElementById("main_modal");
+                M.Modal.getInstance(main_modal).open();
+                main_modal.style.top = "0%";
+                new_form_date.form.reset();
+                //set date on date file
+                let now = new Date();
+                new_form_date.value = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()}`;
+                // console.log(now);
+                M.updateTextFields();
+            });
+            // add_new.click();
+
+            let offset = localStorage.getItem("offset");
+            if(offset == null){
+                localStorage.setItem("offset",0)
+            }
+
+        });
+    </script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/daily_log.js"></script>
+    <script type="module" src="./js/all_customer.js"></script>
+</body>
+
+</html>
