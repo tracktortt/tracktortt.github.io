@@ -1,6 +1,7 @@
 import { loadDailyLogTable} from "./daily_log.js"
 const domainName = window.location.hostname;
-const url = `http://${domainName}:5000`
+// const url = `http://${domainName}:5000`
+const url = `https://api-tracktortt.vercel.app/`
 
 const singleUpdate = async (id,value,field) =>{
    const data = {id,value,field}
