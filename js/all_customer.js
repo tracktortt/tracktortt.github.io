@@ -81,7 +81,7 @@ const loadAllcustomerTable = (query="") =>{
 
             tableHeader.appendChild(headerRow);
             const tbody = {};
-            console.log(row.dl)
+            // console.log(row.dl)
             row.dl.forEach(tr=>{
                 if(!tbody.hasOwnProperty(tr.date)){
                     tbody[tr.date] = []
@@ -147,7 +147,7 @@ const loadAllcustomerTable = (query="") =>{
         // Handle errors here
     });
 }
-const allCustomer_s= document.querySelectorAll(".allCustomer");
+const allCustomer_s= document.querySelectorAll("a.allCustomer.tabb");
 allCustomer_s.forEach(a=>{
     a.addEventListener("click",e=>{
         e.preventDefault();

@@ -9,6 +9,7 @@ document.querySelectorAll('.tabb').forEach(button=>{
         // Element exists
         document.querySelectorAll(".tabe").forEach(div=>{div.style.display = "none";});
         element.style.display = "block";
+        document.querySelector(".sidenav-overlay").click();
         // console.log('Element found!');
         } else {
         // Element does not exist

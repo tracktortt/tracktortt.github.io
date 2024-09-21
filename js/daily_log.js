@@ -167,12 +167,14 @@ let loadDailyLogTable = (offset=false)=>{
     });
 }
 
-const dailyTimeLog_s = document.querySelectorAll(".dailyTimeLog");
+const dailyTimeLog_s = document.querySelectorAll("a.dailyTimeLog.tabb");
 dailyTimeLog_s.forEach(a=>{
     a.addEventListener("click",e=>{
         e.preventDefault();
         let offset = parseInt(localStorage.getItem('offset'))
         loadDailyLogTable(offset);
+        loadCustomerdata();
+
     });
 });
 
@@ -220,9 +222,9 @@ const loadCustomerdata= () =>{
         // Handle errors here
     });
 }
-const timepicker_h = document.getElementById("timepicker_h");
-timepicker_h.addEventListener("input",e=>{
-    console.log(e.target);
-});
+// const timepicker_h = document.getElementById("timepicker_h");
+// timepicker_h.addEventListener("input",e=>{
+//     console.log(e.target);
+// });
 
 export{ loadDailyLogTable}
