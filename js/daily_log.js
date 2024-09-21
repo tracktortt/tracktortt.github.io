@@ -1,27 +1,4 @@
 import {singleUpdate, domainName, url,timeConverter, clickDailylogTd_timepicker, minuteConverter} from "./func.js"
-// const domainName = window.location.hostname;
-// const url = `http://${domainName}:5000`
-// console.log(domainName); // Output: "example.com" (if the URL is https://example.com/path)
-
-// alert(domainName)
-
-// fetch('https://your-api-endpoint', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       // Your data to send
-//       key: 'value'
-//     })
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log('Success:', data);
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
 let customer_array;
 const add_new_button = document.getElementById("add_new_button");
 const new_form = document.getElementById("new_form");
@@ -65,6 +42,7 @@ add_new_button.addEventListener("click",e=>{
             M.toast({html: data.message, classes: 'rounded'});
             new_form.reset();
             M.Modal.getInstance(document.getElementById("main_modal")).close();
+            loadDailyLogTable();
         }
         // Handle the response data here
     }).catch(error => {
@@ -74,15 +52,7 @@ add_new_button.addEventListener("click",e=>{
    
 });
 const daily_log_table = document.getElementById("daily_log_table");
-// {
-//     "address": "123 Main St",
-//     "customer_id": 1002629006356348929,
-//     "date": "2023-12-09",
-//     "dl_end_time": null,
-//     "dl_id": 1002644028567748609,
-//     "dl_start_time": null,
-//     "name": "John Doefaf"
-//   }
+
 let formatTableData = () =>{
     const table = daily_log_table;
     const rows = table.querySelectorAll("tbody tr");
@@ -115,22 +85,12 @@ let formatTableData = () =>{
                 rowspan.td.rowSpan = rowspan.n;
                 rowspan.td.textContent =`${totalTime} min`;
                 removetd = true;
-                // console.log(rows[i])
-                // current_row.cells[7].rowSpan = rowspan.n ;
-                // totalTime += parseInt(current_row.cells[6].textContent.split()[0]);
-                // totalTime += parseInt(next_row.cells[6].textContent.split()[0]);
-
-                // // console.log(totalTime)
-                // current_row.cells[7].textContent = 
-                // // current_row.cells[7].rowspan = rowspan;
                 
             }else{
                 rowspan.n=1;
                 removetd = false;
                 totalTime = 0;
             }
-            // console.log("rowspan",rowspan);
-            // console.log("removetd",removetd);
             
 
         }
@@ -163,9 +123,6 @@ let loadDailyLogTable = (offset=false)=>{
             tr.dataset.id= row.dl_id;
             tr.dataset.cid = row.customer_id;
 
-            // const td_sl = document.createElement("td");
-            // td_sl.textContent = offset++;
-            // tr.appendChild(td_sl);
             
             const td_date = document.createElement("td");
             td_date.textContent = row.date;
@@ -210,8 +167,14 @@ let loadDailyLogTable = (offset=false)=>{
     });
 }
 
-let offset = parseInt(localStorage.getItem('offset'))
-loadDailyLogTable(offset)
+const dailyTimeLog_s = document.querySelectorAll(".dailyTimeLog");
+dailyTimeLog_s.forEach(a=>{
+    a.addEventListener("click",e=>{
+        e.preventDefault();
+        let offset = parseInt(localStorage.getItem('offset'))
+        loadDailyLogTable(offset);
+    });
+});
 
 
 const new_form_name = document.getElementById("new_form_name") ;
@@ -251,29 +214,15 @@ const loadCustomerdata= () =>{
                 M.updateTextFields();
             }
         });
-        // var name_instance = M.Autocomplete.getInstance();
-
-        //     // var autocompletef = document.querySelectorAll('.autocomplete');
-        // name_instance.updateData(a_customer);
         
     }).catch(error => {
         console.error('Error:',error);
         // Handle errors here
     });
 }
-
-loadCustomerdata();
 const timepicker_h = document.getElementById("timepicker_h");
 timepicker_h.addEventListener("input",e=>{
     console.log(e.target);
 });
-
-
-//add customer;
-// const new_form_name = document.getElementById("new_form_name");
-// new_form_name.addEventListener("focusout",e=>{
-//     console.log(e.target.value)
-// });
-
 
 export{ loadDailyLogTable}

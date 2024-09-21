@@ -19,20 +19,28 @@
             <a href="#!" class="brand-logo">Logo</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#" class="tabb" data-id="dashboard">Dashboard</a></li>
-                <li><a href="#" class="tabb" data-id="dailyTimeLog">Daily Time Log</a></li>
-                <li><a href="#" class="tabb" data-id="allCustomer">All Customer</a></li>
+                <li><a href="#" class="tabb dashboard" data-id="dashboard">Dashboard</a></li>
+                <li><a href="#" class="tabb dailyTimeLog" data-id="dailyTimeLog">Daily Time Log</a></li>
+                <li><a href="#" class="tabb allCustomer" data-id="allCustomer">All Customer</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav blue lighten-1 center white-text" id="mobile-demo">
-        <li><a href="#" class="tabb" data-id="dashboard">Dashboard</a></li>
-        <li><a href="#" class="tabb" data-id="dailyTimeLog">Daily Time Log</a></li>
-        <li><a href="#" class="tabb" data-id="allCustomer">All Customer</a></li>
+        <li><a href="#" class="tabb dashboard" data-id="dashboard">Dashboard</a></li>
+        <li><a href="#" class="tabb dailyTimeLog" data-id="dailyTimeLog">Daily Time Log</a></li>
+        <li><a href="#" class="tabb allCustomer" data-id="allCustomer">All Customer</a></li>
     </ul>
 
     <!-- navbar end here -->
     <div class="container">
+        <div class="tabe" id="dashboard" style="display: block;">
+            <div class="row">
+                <h3 class="center">Dashboard</h3>
+                <div class="col s4 m4 offset-s4 offset-m4">
+                    <hr>
+                </div>
+            </div>
+        </div>
         <div class="dailyTimeLog tabe" id="dailyTimeLog" style="display: none;">
             <div class="row">
                 <h3 class="center">Daily log</h3>
@@ -63,8 +71,14 @@
                     </table>
                 </div>
             </div>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large blue" id="add_new">
+                    <i class="large material-icons ">add</i>
+                </a>
+            </div>
         </div>
-        <div class="allCustomer tabe" id ="allCustomer" style="display: block;">
+        
+        <div class="allCustomer tabe" id ="allCustomer" style="display: none;">
             <div class="row">
                 <h3 class="center">All Customer</h3>
                 <div class="col s4 m4 offset-s4 offset-m4">
@@ -131,17 +145,7 @@
 
     </div>
     <!-- floating button start here -->
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large blue" id="add_new">
-            <i class="large material-icons ">add</i>
-        </a>
-        <!-- <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul> -->
-    </div>
+    
     <!-- floating button end here -->
     <!-- modalbox start here -->
 

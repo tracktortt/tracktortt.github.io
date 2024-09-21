@@ -2,12 +2,15 @@ import {singleUpdate, domainName, url,timeConverter, clickDailylogTd_timepicker,
 
 
 const searchCustomer = document.getElementById("searchCustomer");
-
 searchCustomer.addEventListener("input",e=>{
     e.preventDefault();
     const input = e.target;
     // console.log(input.value)/
     let query = input.value.trim();
+    loadAllcustomerTable(query);   
+});
+
+const loadAllcustomerTable = (query="") =>{
     const data = {query};
     // console.log(data)
       fetch(url+"/api/search/customer/all", {
@@ -142,5 +145,12 @@ searchCustomer.addEventListener("input",e=>{
         console.error('Error:',error);
         return false;
         // Handle errors here
+    });
+}
+const allCustomer_s= document.querySelectorAll(".allCustomer");
+allCustomer_s.forEach(a=>{
+    a.addEventListener("click",e=>{
+        e.preventDefault();
+        loadAllcustomerTable();
     });
 });
