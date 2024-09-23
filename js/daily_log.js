@@ -43,6 +43,7 @@ add_new_button.addEventListener("click",e=>{
             new_form.reset();
             M.Modal.getInstance(document.getElementById("main_modal")).close();
             loadDailyLogTable();
+            loadCustomerdata();
         }
         // Handle the response data here
     }).catch(error => {
@@ -51,8 +52,48 @@ add_new_button.addEventListener("click",e=>{
     });
    
 });
-const daily_log_table = document.getElementById("daily_log_table");
 
+const add_same = document.getElementById("add_Same");
+add_same.addEventListener("click",e=>{
+    e.preventDefault();
+    const rows = daily_log_table.querySelectorAll('tr');
+    const cid =rows[rows.length-1].dataset.cid;
+    if(cid!==undefined){
+
+        var instance = M.FloatingActionButton.getInstance(document.getElementById("foatbtn1"));
+        instance.close();
+        let now = new Date();
+        // new_form_date.value = 
+        const date = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()}`;
+        const data = {date,cid};
+        fetch(url+"/api/daily_log/add/customer/same", {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json()).then(data => {
+            console.log('Success:', data);
+            if(data.status == "success"){
+                var instance = M.FloatingActionButton.getInstance(document.getElementById("foatbtn1"));
+                instance.close();
+                M.toast({html: data.message, classes: 'rounded'});
+                // new_form.reset();
+                // M.Modal.getInstance(document.getElementById("main_modal")).close();
+                loadDailyLogTable();
+                // loadCustomerdata();
+            }
+            // Handle the response data here
+        }).catch(error => {
+            console.error('Error:',error);
+            // Handle errors here
+        }); 
+    }else{
+        M.toast({html: 'No customer Found'});
+    }
+});
+
+const daily_log_table = document.getElementById("daily_log_table");
 let formatTableData = () =>{
     const table = daily_log_table;
     const rows = table.querySelectorAll("tbody tr");
@@ -60,8 +101,9 @@ let formatTableData = () =>{
     rowspan["n"] = 1;
     let removetd = false;
     let totalTime = 0;
+    // let pcell0 ;
     for(let i = 0; i<rows.length;i++)
-    {
+    {   
         let current_row = rows[i], next_row = rows[i+1];
         current_row.cells[6].textContent = current_row.cells[5].textContent;
 
@@ -71,7 +113,9 @@ let formatTableData = () =>{
         // console.log("Total Time",totalTime);
         if (removetd){
             current_row.cells[6].remove();
-            rowspan.td.textContent =`${totalTime} min`;
+            current_row.cells[2].textContent = '';
+            current_row.cells[1].textContent = '';
+            rowspan.td.cells[6].textContent =`${totalTime} min`;
         }
         if(i<rows.length-1){
         // console.log(rows[i].dataset.cid, rows[i+1].dataset.cid);
@@ -79,11 +123,13 @@ let formatTableData = () =>{
 
             if(current_row.dataset.cid  == next_row.dataset.cid){
                 if(rowspan.n==1){
-                    rowspan["td"]=current_row.cells[6];
+                    rowspan["td"]=current_row;
                 }
                 rowspan.n ++;
-                rowspan.td.rowSpan = rowspan.n;
-                rowspan.td.textContent =`${totalTime} min`;
+                rowspan.td.cells[6].rowSpan = rowspan.n;
+                // rowspan.td.cells[1].rowSpan = rowspan.n;
+                // rowspan.td.cells[2].rowSpan = rowspan.n;
+                rowspan.td.cells[6].textContent =`${totalTime} min`;
                 removetd = true;
                 
             }else{
@@ -96,6 +142,45 @@ let formatTableData = () =>{
         }
         
     }
+
+    // // rowspan = {};
+    // // rowspan["n"] = 1;
+    // removetd = false;
+    // for(let i = 0; i<rows.length;i++)
+    // {   
+    //     let current_row = rows[i], next_row = rows[i+1];
+       
+    //     rowspan["a"] = current_row.cells[0].textContent ;//, rowspan["b"] =  previous_row.cells[0].textContent;
+    //     if (removetd){
+    //         current_row.cells[0].textContent = '';
+    //     }
+    //     // // if(i<rows.length){
+
+    //         if( rowspan.a===rowspan.value){
+    //             if(rowspan.n==1){
+    //                 // rowspan["td"]=current_row.cells[0];
+    //             }
+    //             // rowspan.n ++;
+    //             // rowspan.td.rowSpan = rowspan.n;
+    //             // rowspan.td.cells[1].rowSpan = rowspan.n;
+    //             // rowspan.td.rowSpan = rowspan.n;
+    //             // rowspan.td.cells[6].textContent =`${totalTime} min`;
+    //             removetd = true;
+                
+    //         }else{
+    //             // rowspan.n=1;
+    //             removetd = false;
+    //             rowspan["value"] = rowspan.a  ;     
+
+    //             // totalTime = 0;
+    //         }
+            
+
+    //     // // }
+    //     if(i==1)
+    //     rowspan["value"] = current_row.cell[0].textContent  ;     
+    // }
+   
 }
 let loadDailyLogTable = (offset=false)=>{
     if (offset==false){
@@ -117,19 +202,20 @@ let loadDailyLogTable = (offset=false)=>{
         const tbody = daily_log_table.querySelector("tbody");
         tbody.innerHTML = "";
         let offset = parseInt(localStorage.getItem('offset'))+1;
-        data.forEach(row =>{
-            // console.log(row)
+        let oldDate;
+        // console.log()
+        data.sort((a, b) => a.dl_id - b.dl_id).forEach(row =>{
             const tr = document.createElement("tr");
             tr.dataset.id= row.dl_id;
             tr.dataset.cid = row.customer_id;
 
-            
             const td_date = document.createElement("td");
-            td_date.textContent = row.date;
+            td_date.textContent = oldDate == row.date ?"" :row.date;
             tr.appendChild(td_date);
+            oldDate = row.date;
 
             const td_name = document.createElement("td");
-            td_name.textContent = row.name;
+            td_name.innerHTML = `${row.name}<br/>${row.phone}`;
             tr.appendChild(td_name);
 
             const td_address = document.createElement("td");
@@ -226,5 +312,5 @@ const loadCustomerdata= () =>{
 // timepicker_h.addEventListener("input",e=>{
 //     console.log(e.target);
 // });
-
+document.querySelector("a.tabb.dailyTimeLog").click();
 export{ loadDailyLogTable}

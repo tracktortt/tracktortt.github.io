@@ -2,6 +2,14 @@
 <html>
 
 <head>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NCJM9VTS');</script>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -9,9 +17,15 @@
     <link rel="stylesheet" href="css/style.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Tag Manager -->
+    <!-- End Google Tag Manager -->
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCJM9VTS" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- navbar start here -->
 
     <nav>
@@ -21,14 +35,16 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="#" class="tabb dashboard" data-id="dashboard">Dashboard</a></li>
                 <li><a href="#" class="tabb dailyTimeLog" data-id="dailyTimeLog">Daily Time Log</a></li>
-                <li><a href="#" class="tabb allCustomer" data-id="allCustomer">All Customer</a></li>
+                <li><a href="#" class="tabb allCustomer" data-id="allCustomer">Customers</a></li>
+                <li><a href="#" class="tabb alldates" data-id="allDates">Dates</a></li>
             </ul>
         </div>
     </nav>
     <ul class="sidenav blue lighten-1 center white-text" id="mobile-demo">
         <li><a href="#" class="tabb dashboard" data-id="dashboard">Dashboard</a></li>
         <li><a href="#" class="tabb dailyTimeLog" data-id="dailyTimeLog">Daily Time Log</a></li>
-        <li><a href="#" class="tabb allCustomer" data-id="allCustomer">All Customer</a></li>
+        <li><a href="#" class="tabb allCustomer" data-id="allCustomer">Customers</a></li>
+        <li><a href="#" class="tabb alldates" data-id="allDates">Dates</a></li>
     </ul>
 
     <!-- navbar end here -->
@@ -41,9 +57,66 @@
                 </div>
             </div>
         </div>
+        <div class="tabe" id="allDates" style="display: none;">
+            <div class="row">
+                <h3 class="center">Dates</h3>
+                <div class="col s4 m4 offset-s4 offset-m4">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row">
+                <form id="customer_Search">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">search</i>
+                        <input id="searchCustomer" type="text" class="validate">
+                        <label for="searchCustomer">Search Customer</label>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <ul class="collapsible" id="collapsible_container0">
+                    <li>
+                        <div class="collapsible-header"> <i class="material-icons">date_range</i>22 Sep 2024 </div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <p>Address:
+                                    <br>Phone No:
+                                    <br> Remark :
+                                </p>
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Minutes</th>
+                                            <th>Sub Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>22-12-2003</td>
+                                            <td>21, 25, 27</td>
+                                            <td>73</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <th>Total</th>
+                                            <th>73 Minutes</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </li>
+
+            </div>
+
+        </div>
         <div class="dailyTimeLog tabe" id="dailyTimeLog" style="display: none;">
             <div class="row">
-                <h3 class="center">Daily log</h3>
+                <h3 class="center">Daily Time log</h3>
                 <div class="col s4 m4 offset-s4 offset-m4">
                     <hr>
                 </div>
@@ -64,71 +137,82 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="6"><h3>No Daily log found</h3></td>
+                                <td colspan="6">
+                                    <h3>No Daily log found</h3>
+                                </td>
                             </tr>
                         </tbody>
 
                     </table>
                 </div>
             </div>
-            <div class="fixed-action-btn">
-                <a class="btn-floating btn-large blue" id="add_new">
-                    <i class="large material-icons ">add</i>
+            <div class="fixed-action-btn" id="foatbtn1">
+                <a class="btn-floating btn-large blue">
+                    <i class="large material-icons ">add_to_photos</i>
                 </a>
+                <ul>
+                    <li><a id="add_new" class="btn-floating green darken-5"><i class="material-icons">add</i></a></li>
+                    <li><a id="add_Same" class="btn-floating blue darken-5"><i
+                                class="material-icons">keyboard_return</i></a></li>
+                    <!-- <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
+                </ul>
             </div>
         </div>
-        
-        <div class="allCustomer tabe" id ="allCustomer" style="display: none;">
+
+        <div class="allCustomer tabe" id="allCustomer" style="display: none;">
             <div class="row">
-                <h3 class="center">All Customer</h3>
+                <h3 class="center">Customers</h3>
                 <div class="col s4 m4 offset-s4 offset-m4">
                     <hr>
                 </div>
             </div>
             <div class="row">
-                    <form id="customer_Search">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">search</i>
-                            <input id="searchCustomer" type="text" class="validate">
-                            <label for="searchCustomer">Search Customer</label>
-                          </div>
-                    </form>
+                <form id="customer_Search">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">search</i>
+                        <input id="searchCustomer" type="text" class="validate">
+                        <label for="searchCustomer">Search Customer</label>
+                    </div>
+                </form>
             </div>
             <div class="row">
                 <ul class="collapsible" id="collapsible_container">
                     <li>
-                      <div class="collapsible-header">  <img width="30px" style="margin-right: 1rem;" class="responsive-img" src="https://avatar.iran.liara.run/public?username=Debjyoti">Debjyoti</div>
-                      <div class="collapsible-body">
-                        <div class="row">
-                            <p>Address: Dharmapur, Gopiballavpur, Jhargram
-                               <br>Phone No: 7004811457
-                               <br> Remark : bhumi
-                            </p>
-                            <table class="striped">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Minutes</th>
-                                        <th>Sub Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>22-12-2003</td>
-                                        <td>21, 25, 27</td>
-                                        <td>73</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <th>Total</th>
-                                        <th>73 Minutes</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                        <div class="collapsible-header"> <img width="30px" style="margin-right: 1rem;"
+                                class="responsive-img"
+                                src="https://avatar.iran.liara.run/public?username=Debjyoti">Debjyoti</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <p>Address:
+                                    <br>Phone No:
+                                    <br> Remark :
+                                </p>
+                                <table class="striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Minutes</th>
+                                            <th>Sub Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>22-12-2003</td>
+                                            <td>21, 25, 27</td>
+                                            <td>73</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <th>Total</th>
+                                            <th>73 Minutes</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
-                      </div>
                     </li>
                     <!-- <li>
                       <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
@@ -139,13 +223,13 @@
                       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
                     </li>
                   </ul> -->
-                        
+
             </div>
         </div>
 
     </div>
     <!-- floating button start here -->
-    
+
     <!-- floating button end here -->
     <!-- modalbox start here -->
 
@@ -158,14 +242,15 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">date_range</i>
-                            <input id="new_form_date" type="text" class="datepicker" name="date" required>
+                            <input id="new_form_date" type="text" class="datepicker" name="date" required disabled>
                             <label for="new_form_date">Date *</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">perm_identity</i>
-                            <input id="new_form_name" type="text" class="validate autocomplete" name="name" required autocomplete="off" >
+                            <input id="new_form_name" type="text" class="validate autocomplete" name="name" required
+                                autocomplete="off">
                             <label for="new_form_name">Full Name * </label>
                         </div>
                     </div>
@@ -173,7 +258,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">phone</i>
-                            <input id="new_form_phone" type="text" class="validate autocomplete" name="phone" >
+                            <input id="new_form_phone" type="text" class="validate autocomplete" name="phone">
                             <label for="new_form_phone">Phone (optional)</label>
                         </div>
                     </div>
@@ -195,21 +280,22 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s4 m2 offset-m11 offset-s9">
-                            <button id="add_new_button" class="btn waves-effect  blue lighten-1 border-radius_5" type="submit" name="action">Add
+                            <button id="add_new_button" class="btn waves-effect  blue lighten-1 border-radius_5"
+                                type="submit" name="action">Add
                                 <i class="material-icons right">add</i>
-                              </button>
+                            </button>
                         </div>
                     </div>
 
-                    
+
                 </form>
             </div>
         </div>
     </div>
     <!-- modalbox end here -->
-     <!-- hiddeninput start here -->
-     <input type="hidden" id="datepicker_h" class="datepicker">
-     <input type="hidden" id="timepicker_h" class="timepicker">
+    <!-- hiddeninput start here -->
+    <input type="hidden" id="datepicker_h" class="datepicker">
+    <input type="hidden" id="timepicker_h" class="timepicker">
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -228,7 +314,7 @@
             // var autocompletef = document.querySelectorAll('.autocomplete');
             // var a_instances = M.Autocomplete.init(autocompletef, {});
 
-     
+
             var C_instances = M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
             // var timepicker = document.querySelectorAll('.timepicker');
             // var t_instances = M.Timepicker.init(timepicker, {
@@ -237,8 +323,8 @@
             //         console.log('Selected Time:', selectedTime);
             //     }
             // });
-            
-            
+
+
             //new form validation
             var new_form_datepicker = document.querySelectorAll('.datepicker');
             var instances = M.Datepicker.init(new_form_datepicker, {
@@ -264,8 +350,8 @@
             // add_new.click();
 
             let offset = localStorage.getItem("offset");
-            if(offset == null){
-                localStorage.setItem("offset",0)
+            if (offset == null) {
+                localStorage.setItem("offset", 0)
             }
 
         });

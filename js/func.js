@@ -16,7 +16,7 @@ const singleUpdate = async (id,value,field) =>{
         },
         body: JSON.stringify(data)
     }).then(response => response.json()).then(data => {
-        console.log('Success:', data);
+        // console.log('Success:', data);
         if(data.status == "success"){
             // M.toast({html: data.message, classes: 'rounded'});
             loadDailyLogTable();
