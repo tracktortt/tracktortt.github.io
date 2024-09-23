@@ -312,5 +312,5 @@ const loadCustomerdata= () =>{
 // timepicker_h.addEventListener("input",e=>{
 //     console.log(e.target);
 // });
-document.querySelector("a.tabb.dailyTimeLog").click();
+// document.querySelector("a.tabb.dailyTimeLog").click();
 export{ loadDailyLogTable}
